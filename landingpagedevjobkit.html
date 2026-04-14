@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jobkit — Apply to dev jobs 5x faster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --bg2: #0f0f0f;
+      --bg3: #141414;
+      --border: #1c1c1c;
+      --border2: #242424;
+      --text: #f2f0eb;
+      --muted: #4a4a4a;
+      --muted2: #333;
+      --accent: #c9f060;
+      --accent-dim: #a8cc44;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      font-family: "DM Serif Display", serif;
+      font-size: 18px;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      border-radius: 2px;
+      padding: 8px 18px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--accent-dim); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--muted2);
+    }
+
+    .hero h1 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(38px, 6vw, 58px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: #888;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-sub strong {
+      color: #888;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-primary:hover { background: var(--accent-dim); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── How it works ── */
+    .how {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--muted2);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 540px) {
+      .steps { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    .step-num {
+      font-family: "DM Serif Display", serif;
+      font-size: 36px;
+      color: var(--border2);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #888;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Demo output ── */
+    .demo {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .demo-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .demo-header h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--text);
+      margin-top: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .output-shell {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .shell-bar {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border2);
+    }
+
+    .shell-title {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-left: 4px;
+    }
+
+    .output-section {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .output-section:last-child { border-bottom: none; }
+
+    .out-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
+
+    .out-num {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted2);
+      letter-spacing: 0.1em;
+      min-width: 18px;
+    }
+
+    .out-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .out-tag {
+      margin-left: auto;
+      font-size: 10px;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-list li {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.75;
+      padding: 6px 0 6px 1.25rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bullet-list li:last-child { border-bottom: none; }
+
+    .bullet-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--muted2);
+      font-size: 11px;
+    }
+
+    .letter-body {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+
+    .fit-body {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.85;
+    }
+
+    /* ── Social proof ── */
+    .proof {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 540px) { .quotes { grid-template-columns: 1fr; } }
+
+    .quote-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+    }
+
+    .quote-text {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+
+    .quote-author {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .quote-role {
+      font-size: 11px;
+      color: var(--muted2);
+      margin-top: 2px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5rem 0 4rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: #888;
+    }
+
+    .cta-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .btn-large {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-family: "DM Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 18px 48px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+      margin-bottom: 1rem;
+    }
+
+    .btn-large:hover { background: var(--accent-dim); }
+    .btn-large:active { transform: scale(0.98); }
+
+    .cta-fine {
+      display: block;
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: 0.75rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-word {
+      font-family: "DM Serif Display", serif;
+      font-size: 14px;
+      color: var(--muted2);
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--muted2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <div class="wordmark">Jobkit</div>
+    <a href="https://buy.stripe.com/8x29AT7vtdGYdYS9zM2Ry06" class="nav-cta">Get access — $9</a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-eyebrow">Built for developers</div>
+    <h1>Apply to dev jobs<br><em>5x faster</em> with AI.</h1>
+    <p class="hero-sub">
+      Paste your resume + job description.<br>
+      Instantly get <strong>tailored bullets</strong>, a <strong>clean cover letter</strong>, and a <strong>sharp "why you fit"</strong> — ready to send.
+    </p>
+    <div class="hero-actions">
+      <a href="https://buy.stripe.com/8x29AT7vtdGYdYS9zM2Ry06" class="btn-primary">Get access — $9</a>
+      <span class="hero-note">One-time payment &nbsp;·&nbsp; Instant access</span>
+    </div>
+  </section>
+</div>
+
+<!-- How it works -->
+<div class="container">
+  <section class="how">
+    <div class="section-label">How it works</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Paste your resume</div>
+        <div class="step-body">Drop in your existing resume. Any format, any length.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Paste the job post</div>
+        <div class="step-body">Copy the job description from anywhere — LinkedIn, Greenhouse, whatever.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Get your kit</div>
+        <div class="step-body">Tailored bullets, cover letter, and your pitch — in under 10 seconds.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Demo -->
+<div class="container">
+  <section class="demo">
+    <div class="demo-header">
+      <div class="section-label">Example output</div>
+      <h2>What you get, every time.</h2>
+    </div>
+
+    <div class="output-shell">
+      <div class="shell-bar">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <span class="shell-title">jobkit — output</span>
+      </div>
+
+      <div class="output-section">
+        <div class="out-head">
+          <span class="out-num">01</span>
+          <span class="out-title">Tailored resume bullets</span>
+          <span class="out-tag">Ready to paste</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Led backend migration from monolithic Rails API to microservices architecture, reducing p99 latency by 40% across 12 production services</li>
+          <li>Designed and shipped real-time notification system handling 200K daily active users with 99.98% uptime over 18 months</li>
+          <li>Rebuilt CI/CD pipeline using GitHub Actions and Docker, cutting average deploy time from 18 minutes to under 4</li>
+          <li>Mentored 3 junior engineers through onboarding; established PR review standards adopted across 2 teams</li>
+        </ul>
+      </div>
+
+      <div class="output-section">
+        <div class="out-head">
+          <span class="out-num">02</span>
+          <span class="out-title">Cover letter</span>
+          <span class="out-tag">Ready to send</span>
+        </div>
+        <div class="letter-body">Dear Hiring Team,
+
+I'm applying for the Senior Software Engineer role. Over the past five years I've owned backend systems end-to-end — from schema design through production incidents — and I'm drawn to this role because the scaling challenges you've described match closely with work I've already done.
+
+At my current company, I led the effort to break apart a monolithic billing service into a distributed architecture. The result was a 40% drop in tail latency and a system the team could actually reason about. I'd bring that same approach to the infrastructure problems you're working on.
+
+I'd welcome the chance to talk. — Jordan Lee</div>
+      </div>
+
+      <div class="output-section">
+        <div class="out-head">
+          <span class="out-num">03</span>
+          <span class="out-title">Why you fit</span>
+          <span class="out-tag">Your edge</span>
+        </div>
+        <div class="fit-body">You've spent five years doing exactly what this role demands — not contributing to systems, but owning them. The job asks for someone who can operate in ambiguity and ship in production. Your record shows both. The two pain points called out in the posting — latency at scale and CI/CD reliability — are problems you've already solved, with numbers to back it up.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Social proof -->
+<div class="container">
+  <section class="proof">
+    <div class="section-label">What people say</div>
+    <div class="quotes">
+      <div class="quote-card">
+        <div class="quote-text">"I used to spend an hour tailoring my resume for every application. Now I do it in 30 seconds and the output is honestly better than what I was writing myself."</div>
+        <div class="quote-author">Marcus T.</div>
+        <div class="quote-role">Senior backend engineer</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">"The cover letter it generated landed me two callbacks in the first week. I changed maybe three words. Worth it at 10x the price."</div>
+        <div class="quote-author">Priya S.</div>
+        <div class="quote-role">Full-stack developer, 4 YOE</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="container">
+  <section class="cta-section" id="cta">
+    <h2>Stop writing from scratch.<br><em>Start applying faster.</em></h2>
+    <p class="cta-sub">One-time payment. No subscription. Use it for every application.</p>
+    <a href="https://buy.stripe.com/8x29AT7vtdGYdYS9zM2Ry06" class="btn-large">Get access — $9</a>
+    <span class="cta-fine">Instant access &nbsp;·&nbsp; Works on any device &nbsp;·&nbsp; No account needed</span>
+  </section>
+</div>
+
+<div class="container">
+  <footer>
+    <div class="footer-word">Jobkit</div>
+    <div class="footer-note">Built for developers who hate writing cover letters.</div>
+  </footer>
+</div>
+
+</body>
+</html>
